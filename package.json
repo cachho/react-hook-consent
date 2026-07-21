@@ -13,7 +13,7 @@
     "main": "./dist/index.js",
     "module": "./dist/index.js",
     "types": "./dist/index.d.ts",
-    "repository": "git@github.com:cachho/react-hook-consent.git",
+    "repository": "https://github.com/cachho/react-hook-consent",
     "author": "cachho <admin@ch-webdev.com>",
     "license": "MIT",
     "homepage": "https://github.com/cachho/react-hook-consent",
