@@ -26,7 +26,7 @@ function ConsentControls() {
 
 export default function App() {
   return (
-    <ConsentProvider settings={/* your settings */}>
+    <ConsentProvider options={/* your options */}>
       <ConsentControls />
     </ConsentProvider>
   );
