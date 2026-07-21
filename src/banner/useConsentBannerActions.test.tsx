@@ -25,6 +25,8 @@ jest.mock("../useConsent", () => ({
 
 describe("useConsentBannerActions", () => {
 	beforeEach(() => {
+		mockSetConsent.mockClear();
+		mockUseConsent.mockReset();
 		mockUseConsent.mockReturnValue({
 			setConsent: mockSetConsent,
 			options,
