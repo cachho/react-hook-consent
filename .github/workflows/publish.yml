@@ -20,6 +20,9 @@ jobs:
           registry-url: "https://registry.npmjs.org"
           cache: "yarn"
 
+      - name: Update npm for OIDC support
+        run: npm install -g npm@^11
+
       - name: Install dependencies
         run: yarn install --frozen-lockfile
 
