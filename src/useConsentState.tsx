@@ -23,9 +23,7 @@ export function useConsentState(options: ConsentOptions) {
 
     useEffect(() => {
         if (!isValidInLocalStorage(state.hash)) {
-            const mandatoryServices = options.services.filter(
-                (service) => service.mandatory,
-            );
+            const mandatoryServices = options.services.filter((service) => service.mandatory);
             const consent = mandatoryServices.map((service) => service.id);
 
             setState((state) => ({
@@ -38,17 +36,11 @@ export function useConsentState(options: ConsentOptions) {
             return;
         }
 
-        const { consent, isBannerVisible, isDetailsVisible } = getFromLocalStorage(
-            state.hash,
-        );
+        const { consent, isBannerVisible, isDetailsVisible } = getFromLocalStorage(state.hash);
 
         const serviceIds = new Set(options.services.map((service) => service.id));
-        const mandatoryIds = options.services
-            .filter((service) => service.mandatory)
-            .map((service) => service.id);
-        const consentWithMandatory = [...new Set([...mandatoryIds, ...consent])].filter((id) =>
-            serviceIds.has(id),
-        );
+        const mandatoryIds = options.services.filter((service) => service.mandatory).map((service) => service.id);
+        const consentWithMandatory = [...new Set([...mandatoryIds, ...consent])].filter((id) => serviceIds.has(id));
         setState((state) => ({
             ...state,
             consent: consentWithMandatory,
@@ -56,21 +48,15 @@ export function useConsentState(options: ConsentOptions) {
             isDetailsVisible,
         }));
 
-        const approvedServices = options.services.filter((service) =>
-            consentWithMandatory.includes(service.id),
-        );
+        const approvedServices = options.services.filter((service) => consentWithMandatory.includes(service.id));
         addServices(approvedServices);
     }, [options.services, state.hash]);
 
     const setConsent = useCallback(
         (consent: Consent[]) => {
             const serviceIds = new Set(options.services.map((service) => service.id));
-            const mandatoryIds = options.services
-                .filter((service) => service.mandatory)
-                .map((service) => service.id);
-            const consentWithMandatory = [...new Set([...mandatoryIds, ...consent])].filter((id) =>
-                serviceIds.has(id),
-            );
+            const mandatoryIds = options.services.filter((service) => service.mandatory).map((service) => service.id);
+            const consentWithMandatory = [...new Set([...mandatoryIds, ...consent])].filter((id) => serviceIds.has(id));
             setState((state) => ({
                 ...state,
                 consent: consentWithMandatory,
@@ -78,13 +64,10 @@ export function useConsentState(options: ConsentOptions) {
             }));
             updateServices(options, consentWithMandatory, state.hash);
         },
-        [options, state.hash],
+        [options, state.hash]
     );
 
-    const hasConsent = useCallback(
-        (id: Consent) => state.consent.includes(id),
-        [state.consent],
-    );
+    const hasConsent = useCallback((id: Consent) => state.consent.includes(id), [state.consent]);
 
     const toggleBanner = useCallback(() => {
         setState((state) => ({

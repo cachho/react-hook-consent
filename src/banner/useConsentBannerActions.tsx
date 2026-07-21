@@ -1,25 +1,23 @@
-import { useCallback } from "react";
-import type { Consent } from "../Context";
-import { useConsent } from "../useConsent";
+import { useCallback } from 'react';
+import type { Consent } from '../Context';
+import { useConsent } from '../useConsent';
 
 export function useConsentBannerActions() {
-	const {
-		setConsent,
-		options: { services },
-	} = useConsent();
+    const {
+        setConsent,
+        options: { services },
+    } = useConsent();
 
-	const onApprove = useCallback(
-		(approved?: Consent[]) => {
-			setConsent(approved ? approved : services.map(({ id }) => id));
-		},
-		[services, setConsent],
-	);
+    const onApprove = useCallback(
+        (approved?: Consent[]) => {
+            setConsent(approved ? approved : services.map(({ id }) => id));
+        },
+        [services, setConsent]
+    );
 
-	const onDecline = useCallback(() => {
-		setConsent(
-			services.filter((service) => service.mandatory).map(({ id }) => id),
-		);
-	}, [services, setConsent]);
+    const onDecline = useCallback(() => {
+        setConsent(services.filter((service) => service.mandatory).map(({ id }) => id));
+    }, [services, setConsent]);
 
-	return { onDecline, onApprove };
+    return { onDecline, onApprove };
 }
