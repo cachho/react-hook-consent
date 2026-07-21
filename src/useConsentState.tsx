@@ -71,6 +71,7 @@ export function useConsentState(options: ConsentOptions) {
             const consentWithMandatory = [...new Set([...mandatoryIds, ...consent])].filter((id) =>
                 serviceIds.has(id),
             );
+            setState((state) => ({
                 ...state,
                 consent: consentWithMandatory,
                 isBannerVisible: false,
