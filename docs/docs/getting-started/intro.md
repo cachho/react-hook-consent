@@ -22,6 +22,31 @@ You can type this command into Command Prompt, Powershell, Terminal, or any othe
 
 The command also installs all necessary dependencies you need to run React Hook Consent.
 
+## Migrating from `react-hook-consent`
+
+This package is a maintained fork of the original `react-hook-consent`. If you are already using the original package, you can switch to this fork **without changing any imports** by using npm's package alias feature:
+
+```bash
+npm install react-hook-consent@npm:@cachho/react-hook-consent
+
+# or with yarn
+yarn add react-hook-consent@npm:@cachho/react-hook-consent
+```
+
+Your `package.json` will show:
+
+```json
+"react-hook-consent": "npm:@cachho/react-hook-consent@latest"
+```
+
+All existing imports continue to work unchanged:
+
+```typescript
+import { ConsentProvider, useConsent } from 'react-hook-consent';
+```
+
+**This is recommended because it's just easier to import.**
+
 ## Basic usage
 
 ### Provider

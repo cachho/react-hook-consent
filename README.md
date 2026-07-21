@@ -28,13 +28,28 @@ React consent management solution and banner for cookies, local storage, session
 
 ## Installation
 
+If you are already using the original unmaintained `react-hook-consent` package, you can switch to this fork **without changing any imports** using npm's package alias feature:
+
 ```bash
-yarn add @cachho/react-hook-consent
+npm install react-hook-consent@npm:@cachho/react-hook-consent
 
-# or
-
-npm install @cachho/react-hook-consent
+# or with yarn
+yarn add react-hook-consent@npm:@cachho/react-hook-consent
 ```
+
+Your `package.json` will show:
+
+```json
+"react-hook-consent": "npm:@cachho/react-hook-consent@latest"
+```
+
+All existing imports continue to work unchanged:
+
+```typescript
+import { ConsentProvider, useConsent } from 'react-hook-consent';
+```
+
+**You could install it without the alias, but that just makes it harder to import or migrate.**
 
 ## Basic usage
 
