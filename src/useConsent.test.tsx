@@ -21,11 +21,14 @@ describe('useConsent', () => {
         localStorage.clear();
     });
 
-    it('should throw when used outside a ConsentProvider', () => {
-        const consoleSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
+it('should throw when used outside a ConsentProvider', () => {
+    const consoleSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
+    try {
         expect(() => renderHook(() => useConsent())).toThrow('useConsent must be used within a ConsentProvider');
+    } finally {
         consoleSpy.mockRestore();
-    });
+    }
+});
 
     it('should return false for hasConsent on non-mandatory services before consent is given', () => {
         const { result } = renderHook(() => useConsent(), {
