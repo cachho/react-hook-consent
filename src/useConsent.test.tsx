@@ -21,6 +21,48 @@ describe('useConsent', () => {
         localStorage.clear();
     });
 
+    it('should throw when used outside a ConsentProvider', () => {
+        const consoleSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
+        expect(() => renderHook(() => useConsent())).toThrow('useConsent must be used within a ConsentProvider');
+        consoleSpy.mockRestore();
+    });
+
+    it('should return false for hasConsent on non-mandatory services before consent is given', () => {
+        const { result } = renderHook(() => useConsent(), {
+            wrapper: ({ children }) => <ConsentProvider options={options}>{children}</ConsentProvider>,
+        });
+
+        expect(result.current.hasConsent('service1')).toBe(false);
+        expect(result.current.hasConsent('service2')).toBe(false);
+    });
+
+    it('should return true for hasConsent on mandatory services and false for non-mandatory', () => {
+        const { result } = renderHook(() => useConsent(), {
+            wrapper: ({ children }) => <ConsentProvider options={optionsWithMandatory}>{children}</ConsentProvider>,
+        });
+
+        expect(result.current.hasConsent('service1')).toBe(true);
+        expect(result.current.hasConsent('service2')).toBe(false);
+    });
+
+    it('should toggle isBannerVisible when toggleBanner is called', () => {
+        const { result } = renderHook(() => useConsent(), {
+            wrapper: ({ children }) => <ConsentProvider options={options}>{children}</ConsentProvider>,
+        });
+
+        const initialVisibility = result.current.isBannerVisible;
+
+        act(() => {
+            result.current.toggleBanner();
+        });
+        expect(result.current.isBannerVisible).toBe(!initialVisibility);
+
+        act(() => {
+            result.current.toggleBanner();
+        });
+        expect(result.current.isBannerVisible).toBe(initialVisibility);
+    });
+
     it('should always include mandatory services in consent when setConsent is called without them', () => {
         const { result } = renderHook(() => useConsent(), {
             wrapper: ({ children }) => <ConsentProvider options={optionsWithMandatory}>{children}</ConsentProvider>,

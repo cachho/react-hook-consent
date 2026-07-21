@@ -6,7 +6,7 @@ sidebar_position: 3
 
 We provide a hook to access the current consent state.
 
-> **_NOTE:_** The hook must be placed in the subtree of the `ConsentProvider` to access the consent state.
+> **_NOTE:_** The hook must be called inside the subtree of a `ConsentProvider`. Calling it outside a provider will throw: `useConsent must be used within a ConsentProvider`.
 
 ## useConsent
 

@@ -35,13 +35,4 @@ type ConsentContext = {
     options: ConsentOptions;
 };
 
-export const ConsentContext = React.createContext<ConsentContext>({
-    consent: [],
-    isBannerVisible: true,
-    isDetailsVisible: false,
-    hasConsent: () => true,
-    toggleBanner: () => {},
-    toggleDetails: () => {},
-    setConsent: ([]) => {},
-    options: { services: [] },
-});
+export const ConsentContext = React.createContext<ConsentContext | null>(null);
