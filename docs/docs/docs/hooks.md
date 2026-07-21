@@ -17,11 +17,20 @@ Use the provided `useConsent` hook to access or update the current consent and s
  * App.tsx
  */
 
-import { useConsent } from 'react-hook-consent';
+import { ConsentProvider, useConsent } from 'react-hook-consent';
 
-// ...
-const { consent, setConsent, isBannerVisible, toggleBanner, isDetailsVisible, toggleDetails } = useConsent();
-// ...
+function ConsentControls() {
+  const { consent, setConsent, isBannerVisible, toggleBanner, isDetailsVisible, toggleDetails } = useConsent();
+  // ...
+}
+
+export default function App() {
+  return (
+    <ConsentProvider settings={/* your settings */}>
+      <ConsentControls />
+    </ConsentProvider>
+  );
+}
 ```
 
 ### API
