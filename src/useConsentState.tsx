@@ -23,9 +23,10 @@ export function useConsentState(options: ConsentOptions) {
 
 	useEffect(() => {
 		if (!isValidInLocalStorage(state.hash)) {
-			const consent = options.services
-				.filter((service) => service?.mandatory)
-				.map((service) => service.id);
+			const mandatoryServices = options.services.filter(
+				(service) => service.mandatory,
+			);
+			const consent = mandatoryServices.map((service) => service.id);
 
 			setState((state) => ({
 				...state,
@@ -33,6 +34,7 @@ export function useConsentState(options: ConsentOptions) {
 				isBannerVisible: true,
 				isDetailsVisible: false,
 			}));
+			addServices(mandatoryServices);
 			return;
 		}
 
