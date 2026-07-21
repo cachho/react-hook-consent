@@ -64,11 +64,13 @@ export function useConsentState(options: ConsentOptions) {
 
 	const setConsent = useCallback(
 		(consent: Consent[]) => {
+			const serviceIds = new Set(options.services.map((service) => service.id));
 			const mandatoryIds = options.services
 				.filter((service) => service.mandatory)
 				.map((service) => service.id);
-			const consentWithMandatory = [...new Set([...mandatoryIds, ...consent])];
-			setState((state) => ({
+			const consentWithMandatory = [...new Set([...mandatoryIds, ...consent])].filter((id) =>
+				serviceIds.has(id),
+			);
 				...state,
 				consent: consentWithMandatory,
 				isBannerVisible: false,
