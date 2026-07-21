@@ -17,6 +17,10 @@ const optionsWithMandatory = {
 };
 
 describe("useConsent", () => {
+	beforeEach(() => {
+		localStorage.clear();
+	});
+
 	it("should always include mandatory services in consent when setConsent is called without them", () => {
 		const { result } = renderHook(() => useConsent(), {
 			wrapper: ({ children }) => (
