@@ -13,10 +13,10 @@
     "main": "./dist/index.js",
     "module": "./dist/index.js",
     "types": "./dist/index.d.ts",
-    "repository": "git@github.com:lukaskupczyk/react-hook-consent.git",
-    "author": "Lukas Kupczyk <lukas@kupczyk.net>",
+    "repository": "git@github.com:cachho/react-hook-consent.git",
+    "author": "cachho <admin@ch-webdev.com>",
     "license": "MIT",
-    "homepage": "https://github.com/lukaskupczyk/react-hook-consent",
+    "homepage": "https://github.com/cachho/react-hook-consent",
     "keywords": [
         "react",
         "nextjs",
