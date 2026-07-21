@@ -1,9 +1,8 @@
 name: Publish Package
 
 on:
-  push:
-    tags:
-      - "v*"
+  release:
+    types: [released]
 
 permissions:
   id-token: write # Required for OIDC trusted publishing
@@ -30,13 +29,10 @@ jobs:
       - name: Build package
         run: yarn build
 
+      - name: Set version from tag
+        run: npm version ${GITHUB_REF_NAME#v} --no-git-tag-version
+
       - name: Publish to npm
         run: npm publish --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }} # Remove after OIDC trusted publisher is configured
-
-      # publish on npm
-      - uses: JS-DevTools/npm-publish@v1
-        with:
-          token: ${{ secrets.NPM_TOKEN }}
-          access: "public"
