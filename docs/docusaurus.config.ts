@@ -64,7 +64,7 @@ const config: Config = {
 					label: "Documentation",
 				},
 				{
-					href: "https://github.com/lukaskupczyk/react-hook-consent",
+					href: "https://github.com/cachho/react-hook-consent",
 					label: "GitHub",
 					position: "right",
 				},
