@@ -9,14 +9,14 @@ const config: Config = {
     // favicon: 'img/favicon.ico',
 
     // Set the production url of your site here
-    url: 'https://lukaskupczyk.github.io',
+    url: 'https://cachho.github.io',
     // Set the /<baseUrl>/ pathname under which your site is served
     // For GitHub pages deployment, it is often '/<projectName>/'
     baseUrl: '/react-hook-consent/',
 
     // GitHub pages deployment config.
     // If you aren't using GitHub pages, you don't need these.
-    organizationName: 'lukaskupcyzk', // Usually your GitHub org/user name.
+    organizationName: 'cachho', // Usually your GitHub org/user name.
     projectName: 'react-hook-consent', // Usually your repo name.
 
     trailingSlash: false,
@@ -64,7 +64,7 @@ const config: Config = {
                     label: 'Documentation',
                 },
                 {
-                    href: 'https://github.com/lukaskupczyk/react-hook-consent',
+                    href: 'https://github.com/cachho/react-hook-consent',
                     label: 'GitHub',
                     position: 'right',
                 },
