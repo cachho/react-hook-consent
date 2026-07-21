@@ -1,56 +1,36 @@
-# workflow to publish on npm
+name: Publish Package
 
-name: publish
 on:
-  # trigger on main branch
-  push:
-    branches: [main]
+  release:
+    types: [released]
 
-  # allow manual dispatch
-  workflow_dispatch:
+permissions:
+  id-token: write # Required for OIDC trusted publishing
+  contents: read
 
 jobs:
-  build:
+  publish:
     runs-on: ubuntu-latest
-
-    strategy:
-      matrix:
-        node-version: [18.x]
-
     steps:
-      # checkout repo
-      - name: Git checkout
-        uses: actions/checkout@v2
+      - uses: actions/checkout@v4
 
-      # setup Node.js
-      - name: Set Node.js - v${{ matrix.node-version }}
-        uses: actions/setup-node@v2
+      - uses: actions/setup-node@v4
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version: "22"
+          registry-url: "https://registry.npmjs.org"
+          cache: "yarn"
 
-      # install dependencies
       - name: Install dependencies
-        run: yarn
+        run: yarn install --frozen-lockfile
 
-      # run tests
       - name: Run tests
         run: yarn test
 
-      # coverage
-      - name: Publish code coverage
-        uses: paambaati/codeclimate-action@v3.2.0
-        env:
-          CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
-        with:
-          coverageCommand: yarn coverage
-          debug: true
-
-      # build dist
       - name: Build package
         run: yarn build
 
-      # publish on npm
-      - uses: JS-DevTools/npm-publish@v1
-        with:
-          token: ${{ secrets.NPM_TOKEN }}
-          access: "public"
+      - name: Set version from tag
+        run: npm version ${GITHUB_REF_NAME#v} --no-git-tag-version
+
+      - name: Publish to npm
+        run: npm publish --access public

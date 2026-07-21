@@ -1,21 +1,18 @@
-![publish workflow](https://github.com/lukaskupczyk/react-hook-consent/actions/workflows/publish.yml/badge.svg)
-[![Test Coverage](https://api.codeclimate.com/v1/badges/807f879a42c4aa48c475/test_coverage)](https://codeclimate.com/github/lukaskupczyk/react-hook-consent/test_coverage)
-[![npm version](https://badge.fury.io/js/react-hook-consent.svg)](https://badge.fury.io/js/react-hook-consent)
+![publish workflow](https://github.com/cachho/react-hook-consent/actions/workflows/publish.yml/badge.svg)
+[![npm version](https://badge.fury.io/js/%40cachho%2Freact-hook-consent.svg)](https://badge.fury.io/js/%40cachho%2Freact-hook-consent)
 [![MIT License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
-# react-hook-consent
+# @cachho/react-hook-consent
+
+> Fork of [react-hook-consent](https://github.com/lukaskupczyk/react-hook-consent) by Lukas Kupczyk.
 
 React consent management solution and banner for cookies, local storage, session storage and (external) scripts.
 
 ![react-hook-consent Screenshot](/assets/screenshot.png)
 
-## Demo
-
-Check out the [CodeSandbox](https://codesandbox.io/s/example-react18-7d1rcb) for a working example.
-
 ## Documentation
 
--   [Documentation](https://lukaskupczyk.github.io/react-hook-consent/)
+-   [Documentation](https://cachho.github.io/react-hook-consent/)
 
 ## Features
 
@@ -32,11 +29,11 @@ Check out the [CodeSandbox](https://codesandbox.io/s/example-react18-7d1rcb) for
 ## Installation
 
 ```bash
-yarn add react-hook-consent
+yarn add @cachho/react-hook-consent
 
 # or
 
-npm install react-hook-consent
+npm install @cachho/react-hook-consent
 ```
 
 ## Basic usage
@@ -48,10 +45,10 @@ Wrap the application in the `ConsentProvider`. Provide settings via the `options
  * index.tsx
  */
 
-import { ConsentBanner, ConsentProvider } from 'react-hook-consent';
+import { ConsentBanner, ConsentProvider } from '@cachho/react-hook-consent';
 
 // styling
-import 'react-hook-consent/dist/styles/style.css';
+import '@cachho/react-hook-consent/dist/styles/style.css';
 
 // ...
 <ConsentProvider

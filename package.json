@@ -1,6 +1,6 @@
 {
-    "name": "react-hook-consent",
-    "version": "3.5.3",
+    "name": "@cachho/react-hook-consent",
+    "version": "0.0.0",
     "description": "React consent management solution and banner for cookies and (external) scripts.",
     "scripts": {
         "build": "node esbuild.config.mjs production",
@@ -13,10 +13,10 @@
     "main": "./dist/index.js",
     "module": "./dist/index.js",
     "types": "./dist/index.d.ts",
-    "repository": "git@github.com:lukaskupczyk/react-hook-consent.git",
-    "author": "Lukas Kupczyk <lukas@kupczyk.net>",
+    "repository": "https://github.com/cachho/react-hook-consent",
+    "author": "cachho <admin@ch-webdev.com>",
     "license": "MIT",
-    "homepage": "https://github.com/lukaskupczyk/react-hook-consent",
+    "homepage": "https://github.com/cachho/react-hook-consent",
     "keywords": [
         "react",
         "nextjs",
